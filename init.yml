@@ -11,5 +11,5 @@
   handlers:
     - name: restart ssh
       service:
-        name: sshd
+        name: "{{ 'sshd' if ansible_os_family == 'RedHat' else 'ssh' }}"
         state: restarted
