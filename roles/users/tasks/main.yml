@@ -59,6 +59,16 @@
   loop: "{{ developers }}"
   when: item.name not in getent_passwd.keys()
 
+- name: Unlock account with empty password
+  command: "passwd -d {{ item.name }}"
+  loop: "{{ developers }}"
+  when: item.name not in getent_passwd.keys()
+
+- name: Force password change on first login
+  command: "chage -d 0 {{ item.name }}"
+  loop: "{{ developers }}"
+  when: item.name not in getent_passwd.keys()
+
 - name: Add SSH keys for developers
   authorized_key:
     user: "{{ item.name }}"
