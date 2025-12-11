@@ -1,0 +1,24 @@
+# Project configuration
+project_name: myproject
+project_user: "{{ project_name }}"
+project_group: "{{ project_name }}"
+project_home: "/opt/{{ project_name }}"
+deploy_user: "{{ project_name }}_deploy"
+
+# Docker configuration
+docker_packages:
+  - docker.io
+  - docker-compose-plugin
+
+# Developer SSH keys (add your team's keys here)
+developers:
+  - name: touchme
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCnUneA6+mOT+vfGHJfLOT/snDk/nemNV/cOh8WhZrKomIEVWcd8UmgqE/d8xBK1K3axiRN1v01EWXun2yNC4hxsaxJ1m1OQb6OGjHGy4Y4ta24YTnE13aSQ/Qrpd9fLA5M//xgoCiF5YDtcu9JODqkF8bl6IprgRaGi6nrQNHJBakmfP/o8ReK6v5YDzixsWkYkE8uo6oeGLc47ZQoC0JDMSjKOZocYxXVjuuvZeDcl6R4Ys2ijJABZTsrkcOvqmYN8zGIQQz2tiMWgYtDhUCjcn5A4OmefoAMiGYIsO2cpQIueMQjPIYdSnusQgp/PPFsVYwlMFL8xaXaI5IC0Oql90dWwZCd6Kxc49iZUvBVJTjtb/ZSF5mAnMlIb1u0619oHHZl5qVi+pHNVjo9/r5Wyz6NWaA8IbOdVIavmtpL/62Kvbi2qnzWUUfEQZBNrWwMyY/+ahG76IvN6VTQPv4LK4pl4KxOlQHAqYHiFK8Vo+3j6nIS9IeQcGJgxI6IFTvT2FUMFNVifVBXKm1W5MRcZ8bXnSm5DJETEBfrbVUfBUfQMjtUFxcqFhQXD0S+d1vRe8ETVYr0e4x71jzxtadQWmEHX+56bqC7GYnHWGYwxLy45YvgeVoqJKTwgn8n3MyMOhaQy/kTGR/3xSSavws9/m9FqAfPp/Ry9+tsFv8i8w== @touchmeangel"
+
+# GitHub Actions deploy key
+github_actions_ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCwmqTNONQjh3dRnYL2skpdZQLMOe7vheU9jsIpdbZxhErw3QmLfRyT/WChRF3L1QN5Piup+/am6nDHIB3YKNiRLarh+QMjjSwAMWnuuKsqf2s4pQsdNaseAAf1s0R70bAPR+M+aSrL6QvY2hUn7+3fzO/Ki68ZLiccRcEV2u3Nv3Qlao/L74FhgQobhgejznctutiXFzpigCw2AiQUP+tgzJREVZcGVrFK9pljA9tIjmkOx+iW49tvowIlG4vNdEHTZ6JKjqzYcvgTgX1qdT0jR8X7eVLKgsr+5H74Lx5LRX1UQaOnIxhpBBVEApjbtS1wizqBuPS8k3a6d6fQ5MUiYMndOFC4kUb+OgztqkrfbhN2mXJO2mxr54NBHyI2q5VCW7LrD5CnHaeF8nQO9U0oUKn6Tjq1tQzQwFz18bo8HxjaDaI4J+jOyQfTeHJSrEZbz+dVfGMYbbid/pD+MjT1ZTEKQYYbo58n16t+giUEo6AHY2tZIHKjUbDLOZ/bd2OfyhhsZg1CO+7ioTssC3Lshp3IwtINSClCaKa7MZOAu52MM5dBjewHxNnOlPcC4DwidVQJ/gdw7T/TQh09DmZd6QqUhj1ptArFBE7uLxkJpP0QD0Mtk3QuZ+FEKGHnshUhAJQHHgbv0l4WTLp45L15OEnCOE7cSmmTg5bLatDMaw== github-actions-deploy"
+
+# Firewall ports
+firewall_allowed_ports:
+  - "22"
+  - "443"

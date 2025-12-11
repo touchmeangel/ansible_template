@@ -1,0 +1,2 @@
+# Allow deploy user to run docker commands as project user
+{{ deploy_user }} ALL=({{ project_user }}) NOPASSWD: /usr/bin/docker, /usr/bin/docker compose

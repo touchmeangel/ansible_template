@@ -1,0 +1,15 @@
+- name: Create project directory structure
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ project_user }}"
+    group: "{{ project_group }}"
+    mode: '0750'
+  loop:
+    - "{{ project_home }}"
+
+- name: Set setgid bit on project directory
+  file:
+    path: "{{ project_home }}"
+    mode: '2750'
+    state: directory

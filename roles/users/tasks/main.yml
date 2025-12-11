@@ -1,0 +1,52 @@
+- name: Create project group
+  group:
+    name: "{{ project_group }}"
+    state: present
+
+- name: Create project user
+  user:
+    name: "{{ project_user }}"
+    group: "{{ project_group }}"
+    home: "{{ project_home }}"
+    shell: /bin/bash
+    create_home: yes
+    system: no
+
+- name: Create deploy user
+  user:
+    name: "{{ deploy_user }}"
+    groups:
+      - "{{ project_group }}"
+      - docker
+    home: "/home/{{ deploy_user }}"
+    shell: /bin/bash
+    create_home: yes
+    system: no
+
+- name: Add GitHub Actions SSH key for deploy user
+  authorized_key:
+    user: "{{ deploy_user }}"
+    key: "{{ github_actions_ssh_key }}"
+    state: present
+
+- name: Create developer users
+  user:
+    name: "{{ item.name }}"
+    groups: "{{ project_group }}"
+    shell: /bin/bash
+    create_home: yes
+  loop: "{{ developers }}"
+
+- name: Add SSH keys for developers
+  authorized_key:
+    user: "{{ item.name }}"
+    key: "{{ item.ssh_key }}"
+    state: present
+  loop: "{{ developers }}"
+
+- name: Configure sudo for deploy user
+  template:
+    src: sudoers_deploy.j2
+    dest: "/etc/sudoers.d/{{ deploy_user }}"
+    mode: '0440'
+    validate: '/usr/sbin/visudo -cf %s'
