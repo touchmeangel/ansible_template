@@ -1,7 +1,7 @@
 ## ansible_template
 Simple ansible template for single project server
 
-## Setup
+## Examples
 
 
 ## License
