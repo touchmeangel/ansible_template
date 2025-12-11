@@ -3,6 +3,13 @@
     name: "{{ project_group }}"
     state: present
 
+- name: Check if project user exists
+  getent:
+    database: passwd
+    key: "{{ project_user }}"
+  register: project_user_info
+  ignore_errors: yes
+
 - name: Create project user
   user:
     name: "{{ project_user }}"
@@ -11,6 +18,14 @@
     shell: /bin/bash
     create_home: yes
     system: no
+  when: project_user_info.failed
+
+- name: Check if deploy user exists
+  getent:
+    database: passwd
+    key: "{{ deploy_user }}"
+  register: deploy_user_info
+  ignore_errors: yes
 
 - name: Create deploy user
   user:
@@ -19,15 +34,21 @@
       - "{{ project_group }}"
       - docker
     home: "/home/{{ deploy_user }}"
-    shell: /bin/bash
+    shell: /bin/bash"
     create_home: yes
     system: no
+  when: deploy_user_info.failed
 
 - name: Add GitHub Actions SSH key for deploy user
   authorized_key:
     user: "{{ deploy_user }}"
     key: "{{ github_actions_ssh_key }}"
     state: present
+
+- name: Check existing developer accounts
+  getent:
+    database: passwd
+  register: passwd_db
 
 - name: Create developer users
   user:
@@ -36,6 +57,7 @@
     shell: /bin/bash
     create_home: yes
   loop: "{{ developers }}"
+  when: item.name not in getent_passwd.keys()
 
 - name: Add SSH keys for developers
   authorized_key:
