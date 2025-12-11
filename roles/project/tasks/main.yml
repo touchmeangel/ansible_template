@@ -1,3 +1,8 @@
+- name: Check if project directory exists
+  stat:
+    path: "{{ project_home }}"
+  register: project_dir
+
 - name: Create project directory structure
   file:
     path: "{{ item }}"
@@ -7,9 +12,11 @@
     mode: '0750'
   loop:
     - "{{ project_home }}"
+  when: not project_dir.stat.exists
 
 - name: Set setgid bit on project directory
   file:
     path: "{{ project_home }}"
     mode: '2750'
     state: directory
+  when: not project_dir.stat.exists
