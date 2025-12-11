@@ -1,0 +1,1 @@
+### Simple ansible template for single project server
