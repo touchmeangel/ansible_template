@@ -13,6 +13,7 @@ docker_packages:
 # Developer SSH keys (add your team's keys here)
 developers:
   - name: touchme
+    root_access: true
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCnUneA6+mOT+vfGHJfLOT/snDk/nemNV/cOh8WhZrKomIEVWcd8UmgqE/d8xBK1K3axiRN1v01EWXun2yNC4hxsaxJ1m1OQb6OGjHGy4Y4ta24YTnE13aSQ/Qrpd9fLA5M//xgoCiF5YDtcu9JODqkF8bl6IprgRaGi6nrQNHJBakmfP/o8ReK6v5YDzixsWkYkE8uo6oeGLc47ZQoC0JDMSjKOZocYxXVjuuvZeDcl6R4Ys2ijJABZTsrkcOvqmYN8zGIQQz2tiMWgYtDhUCjcn5A4OmefoAMiGYIsO2cpQIueMQjPIYdSnusQgp/PPFsVYwlMFL8xaXaI5IC0Oql90dWwZCd6Kxc49iZUvBVJTjtb/ZSF5mAnMlIb1u0619oHHZl5qVi+pHNVjo9/r5Wyz6NWaA8IbOdVIavmtpL/62Kvbi2qnzWUUfEQZBNrWwMyY/+ahG76IvN6VTQPv4LK4pl4KxOlQHAqYHiFK8Vo+3j6nIS9IeQcGJgxI6IFTvT2FUMFNVifVBXKm1W5MRcZ8bXnSm5DJETEBfrbVUfBUfQMjtUFxcqFhQXD0S+d1vRe8ETVYr0e4x71jzxtadQWmEHX+56bqC7GYnHWGYwxLy45YvgeVoqJKTwgn8n3MyMOhaQy/kTGR/3xSSavws9/m9FqAfPp/Ry9+tsFv8i8w== @touchmeangel"
 
 # GitHub Actions deploy key

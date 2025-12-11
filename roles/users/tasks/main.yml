@@ -65,3 +65,11 @@
     key: "{{ item.ssh_key }}"
     state: present
   loop: "{{ developers }}"
+
+- name: Grant sudo access to developers with root access
+  user:
+    name: "{{ item.name }}"
+    groups: sudo
+    append: yes
+  loop: "{{ developers }}"
+  when: item.root_access | default(false)
