@@ -32,12 +32,11 @@
     name: "{{ deploy_user }}"
     groups:
       - "{{ project_group }}"
-      - docker
     home: "/home/{{ deploy_user }}"
-    shell: /bin/bash"
+    shell: /bin/bash
     create_home: yes
     system: no
-  when: deploy_user_info.failed
+  when: deploy_user_info.ansible_facts.getent_passwd is not defined
 
 - name: Add GitHub Actions SSH key for deploy user
   authorized_key:
