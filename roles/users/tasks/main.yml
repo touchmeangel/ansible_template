@@ -25,7 +25,7 @@
     database: passwd
     key: "{{ deploy_user }}"
   register: deploy_user_info
-  ignore_errors: yes
+  failed_when: false
 
 - name: Create deploy user
   user:
