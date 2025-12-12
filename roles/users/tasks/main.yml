@@ -59,6 +59,15 @@
   loop: "{{ developers }}"
   when: item.name not in getent_passwd.keys()
 
+- name: Add existing users to project group if missing
+  user:
+    name: "{{ item.name }}"
+    groups: "{{ project_group }}"
+    append: yes
+    state: present
+  loop: "{{ developers }}"
+  when: item.name in getent_passwd.keys()
+
 - name: Unlock account with empty password
   command: "passwd -d {{ item.name }}"
   loop: "{{ developers }}"
